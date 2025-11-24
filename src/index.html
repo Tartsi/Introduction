@@ -3,13 +3,330 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction</title>
+    <meta
+      name="description"
+      content="Tarvo Lilja - BSc in Computer Science, University of Helsinki. Portfolio website showcasing education, skills, and projects."
+    />
+    <title>Tarvo Lilja - Computer Science Portfolio</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <!-- LOREM -->
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur impedit
-    quas natus aspernatur omnis exercitationem vitae excepturi officia veniam
-    delectus pariatur non nobis voluptates deleniti nisi accusantium, asperiores
-    obcaecati dolorem?
+    <!-- Navigation -->
+    <nav class="navbar">
+      <a href="#hero" class="navbar__logo">Tarvo Lilja</a>
+      <button class="navbar__toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="navbar__menu">
+        <li><a href="#about" class="navbar__link">About</a></li>
+        <li><a href="#education" class="navbar__link">Education</a></li>
+        <li><a href="#skills" class="navbar__link">Skills</a></li>
+        <li><a href="#projects" class="navbar__link">Projects</a></li>
+        <li><a href="#contact" class="navbar__link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div class="hero__container">
+        <div class="hero__image-wrapper">
+          <img
+            src="assets/Fennopromo_21A3875_bw_crop-min.png"
+            alt="Tarvo Lilja"
+            class="hero__image"
+          />
+        </div>
+        <div class="hero__content">
+          <h1 class="hero__title">Tarvo Lilja</h1>
+          <p class="hero__subtitle">
+            BSc in Computer Science, University of Helsinki
+          </p>
+          <div class="hero__description">
+            <p>
+              Passionate computer science graduate with a strong foundation in
+              software development and data-driven solutions. I specialize in
+              full-stack web development and am eager to contribute to
+              innovative projects while continuously expanding my technical
+              expertise.
+            </p>
+            <p>
+              Currently seeking opportunities as a junior software developer or
+              data-oriented role where I can apply my skills in JavaScript,
+              Python, and modern web technologies to create impactful solutions.
+            </p>
+          </div>
+          <div class="hero__buttons">
+            <a href="#contact" class="btn btn--primary">Contact Me</a>
+            <a href="#" class="btn btn--secondary btn--download-cv"
+              >Download CV</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section (merging with hero for simplicity) -->
+    <section id="about" style="height: 1px; visibility: hidden"></section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+      <div class="section__container">
+        <h2 class="section__title">Education</h2>
+        <div class="education__card">
+          <div class="education__header">
+            <div>
+              <h3 class="education__degree">
+                Bachelor of Science in Computer Science
+              </h3>
+              <p class="education__institution">University of Helsinki</p>
+            </div>
+            <span class="education__year">2025</span>
+          </div>
+          <div class="education__details">
+            <h4 class="education__subtitle">Key Courses & Minors</h4>
+            <ul class="education__list">
+              <li class="education__list-item">Software Engineering</li>
+              <li class="education__list-item">Algorithms & Data Structures</li>
+              <li class="education__list-item">Web Development</li>
+              <li class="education__list-item">Database Systems</li>
+              <li class="education__list-item">Artificial Intelligence</li>
+              <li class="education__list-item">Statistics & Data Analysis</li>
+            </ul>
+            <div class="education__thesis">
+              <h4 class="education__subtitle">Bachelor's Thesis</h4>
+              <p class="education__thesis-text">
+                Explored modern web development practices and their application
+                in building scalable, user-friendly applications. The thesis
+                focused on comparing different architectural approaches and
+                their impact on maintainability, performance, and developer
+                experience in real-world projects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+      <div class="section__container skills__container">
+        <h2 class="section__title">Skills</h2>
+        <div class="skills__categories">
+          <div class="skills__category">
+            <h3 class="skills__category-title">Programming & Tech</h3>
+            <ul class="skills__list">
+              <li class="skills__item">JavaScript</li>
+              <li class="skills__item">React</li>
+              <li class="skills__item">Node.js</li>
+              <li class="skills__item">Python</li>
+              <li class="skills__item">HTML5 & CSS3</li>
+              <li class="skills__item">Git & GitHub</li>
+              <li class="skills__item">SQL</li>
+              <li class="skills__item">REST APIs</li>
+              <li class="skills__item">Responsive Design</li>
+              <li class="skills__item">TypeScript</li>
+            </ul>
+          </div>
+          <div class="skills__category">
+            <h3 class="skills__category-title">Other Competencies</h3>
+            <ul class="skills__list">
+              <li class="skills__item">Problem Solving</li>
+              <li class="skills__item">Team Collaboration</li>
+              <li class="skills__item">Agile Methodologies</li>
+              <li class="skills__item">Communication</li>
+              <li class="skills__item">Critical Thinking</li>
+              <li class="skills__item">Time Management</li>
+              <li class="skills__item">Continuous Learning</li>
+              <li class="skills__item">Attention to Detail</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="section__container projects__container">
+        <h2 class="section__title">Projects</h2>
+        <div class="projects__grid">
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-card__header">
+              <h3 class="project-card__title">Bachelor's Thesis Project</h3>
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__description">
+                A comprehensive research project examining modern web
+                development architectures. Implemented multiple prototypes to
+                compare different approaches, focusing on scalability,
+                maintainability, and performance optimization.
+              </p>
+              <div class="project-card__tech">
+                <p class="project-card__tech-title">Technologies Used</p>
+                <ul class="project-card__tech-list">
+                  <li class="project-card__tech-item">React</li>
+                  <li class="project-card__tech-item">Node.js</li>
+                  <li class="project-card__tech-item">PostgreSQL</li>
+                  <li class="project-card__tech-item">REST API</li>
+                </ul>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="#"
+                  class="project-card__link project-card__link--primary"
+                  >View Demo</a
+                >
+                <a
+                  href="#"
+                  class="project-card__link project-card__link--secondary"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-card__header">
+              <h3 class="project-card__title">Full-Stack Web Application</h3>
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__description">
+                A course project featuring a single-page application with full
+                authentication, real-time updates, and responsive design. Solved
+                challenges related to state management and API integration while
+                maintaining clean code architecture.
+              </p>
+              <div class="project-card__tech">
+                <p class="project-card__tech-title">Technologies Used</p>
+                <ul class="project-card__tech-list">
+                  <li class="project-card__tech-item">JavaScript</li>
+                  <li class="project-card__tech-item">Express</li>
+                  <li class="project-card__tech-item">MongoDB</li>
+                  <li class="project-card__tech-item">Socket.io</li>
+                </ul>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="#"
+                  class="project-card__link project-card__link--primary"
+                  >View Demo</a
+                >
+                <a
+                  href="#"
+                  class="project-card__link project-card__link--secondary"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-card__header">
+              <h3 class="project-card__title">Personal Portfolio Website</h3>
+            </div>
+            <div class="project-card__body">
+              <p class="project-card__description">
+                A modern, responsive portfolio website built with vanilla
+                JavaScript and modular CSS. Implemented smooth animations,
+                mobile-first design, and optimized performance for fast loading
+                across all devices.
+              </p>
+              <div class="project-card__tech">
+                <p class="project-card__tech-title">Technologies Used</p>
+                <ul class="project-card__tech-list">
+                  <li class="project-card__tech-item">HTML5</li>
+                  <li class="project-card__tech-item">CSS3</li>
+                  <li class="project-card__tech-item">JavaScript</li>
+                  <li class="project-card__tech-item">Git</li>
+                </ul>
+              </div>
+              <div class="project-card__links">
+                <a
+                  href="#"
+                  class="project-card__link project-card__link--primary"
+                  >View Demo</a
+                >
+                <a
+                  href="#"
+                  class="project-card__link project-card__link--secondary"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="section__container contact__container">
+        <h2 class="section__title">Get In Touch</h2>
+        <div class="contact__content">
+          <div class="contact__intro">
+            <p class="contact__subtitle">
+              I'm always interested in hearing about new opportunities,
+              collaborations, or just having a conversation about technology.
+              Whether you have a question or just want to say hi, feel free to
+              reach out!
+            </p>
+          </div>
+          <div class="contact__info">
+            <a href="mailto:tarvo.lilja@example.com" class="contact__item">
+              <div class="contact__icon">📧</div>
+              <div class="contact__item-content">
+                <p class="contact__item-label">Email</p>
+                <p class="contact__item-value">tarvo.lilja@example.com</p>
+              </div>
+            </a>
+            <a
+              href="https://linkedin.com/in/tarvo-lilja"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact__item"
+            >
+              <div class="contact__icon">💼</div>
+              <div class="contact__item-content">
+                <p class="contact__item-label">LinkedIn</p>
+                <p class="contact__item-value">linkedin.com/in/tarvo-lilja</p>
+              </div>
+            </a>
+            <a
+              href="https://github.com/tarvolilja"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contact__item"
+            >
+              <div class="contact__icon">🔗</div>
+              <div class="contact__item-content">
+                <p class="contact__item-label">GitHub</p>
+                <p class="contact__item-value">github.com/tarvolilja</p>
+              </div>
+            </a>
+          </div>
+          <div class="contact__cta">
+            <p class="contact__cta-text">
+              I'm currently looking for a junior software developer or
+              data-oriented role in the Helsinki region.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__content">
+        <p class="footer__text">
+          &copy; 2025 Tarvo Lilja. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
   </body>
 </html>

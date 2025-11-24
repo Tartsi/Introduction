@@ -3,6 +3,9 @@ node_modules/
 package-lock.json
 yarn.lock
 
+# Generative AI
+prompt.md
+
 # Testing
 coverage/
 .nyc_output/
