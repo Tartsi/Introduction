@@ -7,6 +7,7 @@ export function initActiveSection() {
   function setActiveLink() {
     const scrollPosition = window.scrollY + 150;
 
+    // Treat hero section as "about" for active state
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
@@ -18,7 +19,10 @@ export function initActiveSection() {
       ) {
         navLinks.forEach((link) => {
           link.classList.remove("active");
-          if (link.getAttribute("href") === `#${sectionId}`) {
+          // If we're in the hero section, highlight "About" link
+          if (sectionId === "hero" && link.getAttribute("href") === "#about") {
+            link.classList.add("active");
+          } else if (link.getAttribute("href") === `#${sectionId}`) {
             link.classList.add("active");
           }
         });
