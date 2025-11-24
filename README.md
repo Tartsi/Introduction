@@ -47,10 +47,6 @@ Introduction/
 Simply open `src/index.html` in a web browser, or use a local development server:
 
 ```bash
-# Using Python
-cd src
-python -m http.server 8000
-
 # Using Node.js (http-server)
 cd src
 npx http-server
@@ -75,28 +71,13 @@ npx http-server
 5. **Projects**: Portfolio of key projects with links
 6. **Contact**: Contact information and professional links
 
-## Customization
-
-To customize content:
-
-- Update personal information in `src/index.html`
-- Modify colors in CSS variables in `src/index.css`
-- Add/remove skills and projects as needed
-- Replace profile image in `src/assets/`
-
-## License
-
-MIT License - See LICENSE file for details Website - Tarvo Lilja
-
-Portfolio showcasing my skills, projects, and professional/educational journey.
-
 ## Goal
 
-This website serves as a comprehensive introduction to my professional profile, designed to help potential employers and collaborators:
+This website serves as a comprehensive introduction to my professional/educational profile, designed to help potential employers and collaborators:
 
 - Understand my technical skills and expertise
 - Review my portfolio of projects and accomplishments
-- Learn about my professional background and experience
+- Learn about my professional/educational background and experience
 - Connect with me for opportunities
 
 ## Features
