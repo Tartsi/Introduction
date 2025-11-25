@@ -8,21 +8,38 @@ export function initScrollSnap() {
 
   let lastScrollY = window.scrollY;
   let isInHero = true;
-  let isSnapping = false;
+  let isScrollLocked = false;
 
   // Make navbar initially hidden
   navbar.classList.remove("visible");
 
+  // Function to lock/unlock scrolling
+  function setScrollLock(locked) {
+    isScrollLocked = locked;
+    if (locked) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+  }
+
   // See More click handler
   if (seeMoreTrigger) {
     seeMoreTrigger.addEventListener("click", () => {
-      educationSection.scrollIntoView({ behavior: "smooth" });
+      const educationTop = educationSection.offsetTop;
+      setScrollLock(true);
+      smoothScrollTo(educationTop, 1800);
+      setTimeout(() => {
+        setScrollLock(false);
+      }, 1800);
     });
   }
 
   // Scroll handler for auto-hiding navbar and snap behavior
   function handleScroll() {
-    if (isSnapping) return; // Don't process scroll events during snap animation
+    if (isScrollLocked) return; // Don't process scroll events during locked scroll
 
     const currentScrollY = window.scrollY;
     const heroBottom = heroSection.offsetHeight;
@@ -43,10 +60,10 @@ export function initScrollSnap() {
         currentScrollY < educationTop &&
         currentScrollY >= heroBottom * 0.5
       ) {
-        isSnapping = true;
+        setScrollLock(true);
         smoothScrollTo(educationTop, 1800); // 1800ms = 1500ms * 1.2 (20% slower)
         setTimeout(() => {
-          isSnapping = false;
+          setScrollLock(false);
         }, 1800);
       }
     }
@@ -58,10 +75,10 @@ export function initScrollSnap() {
       currentScrollY > heroBottom * 0.3
     ) {
       // User is scrolling up from education towards hero
-      isSnapping = true;
+      setScrollLock(true);
       smoothScrollTo(0, 1800); // 1800ms = 1500ms * 1.2 (20% slower)
       setTimeout(() => {
-        isSnapping = false;
+        setScrollLock(false);
       }, 1800);
     }
 
@@ -103,4 +120,7 @@ export function initScrollSnap() {
 
   // Initial check
   handleScroll();
+
+  // Export scroll lock function for use in other modules
+  window.setScrollLock = setScrollLock;
 }
