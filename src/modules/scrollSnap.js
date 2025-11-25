@@ -8,6 +8,7 @@ export function initScrollSnap() {
 
   let lastScrollY = window.scrollY;
   let isInHero = true;
+  let isSnapping = false;
 
   // Make navbar initially hidden
   navbar.classList.remove("visible");
@@ -21,10 +22,11 @@ export function initScrollSnap() {
 
   // Scroll handler for auto-hiding navbar and snap behavior
   function handleScroll() {
+    if (isSnapping) return; // Don't process scroll events during snap animation
+
     const currentScrollY = window.scrollY;
     const heroBottom = heroSection.offsetHeight;
     const educationTop = educationSection.offsetTop;
-    const educationBottom = educationTop + educationSection.offsetHeight;
     const scrollDirection = currentScrollY > lastScrollY ? "down" : "up";
 
     // Determine if we're in hero section
@@ -34,6 +36,19 @@ export function initScrollSnap() {
     } else {
       isInHero = false;
       navbar.classList.add("visible");
+
+      // Snap to education as soon as header becomes visible when scrolling down
+      if (
+        scrollDirection === "down" &&
+        currentScrollY < educationTop &&
+        currentScrollY >= heroBottom * 0.5
+      ) {
+        isSnapping = true;
+        smoothScrollTo(educationTop, 1800); // 1800ms = 1500ms * 1.2 (20% slower)
+        setTimeout(() => {
+          isSnapping = false;
+        }, 1800);
+      }
     }
 
     // Snap behavior for hero section when scrolling up from education
@@ -43,26 +58,38 @@ export function initScrollSnap() {
       currentScrollY > heroBottom * 0.3
     ) {
       // User is scrolling up from education towards hero
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
-
-    // Snap behavior for education section when scrolling down from hero
-    if (
-      scrollDirection === "down" &&
-      currentScrollY > heroBottom * 0.7 &&
-      currentScrollY < educationTop + 100
-    ) {
-      // User is scrolling down from hero towards education
-      window.scrollTo({
-        top: educationTop,
-        behavior: "smooth",
-      });
+      isSnapping = true;
+      smoothScrollTo(0, 1800); // 1800ms = 1500ms * 1.2 (20% slower)
+      setTimeout(() => {
+        isSnapping = false;
+      }, 1800);
     }
 
     lastScrollY = currentScrollY;
+  }
+
+  // Custom smooth scroll function with custom duration
+  function smoothScrollTo(targetPosition, duration) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let start = null;
+
+    function animation(currentTime) {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function easeInOutQuad(t, b, c, d) {
+      t /= d / 2;
+      if (t < 1) return (c / 2) * t * t + b;
+      t--;
+      return (-c / 2) * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
   }
 
   // Use throttling to improve performance

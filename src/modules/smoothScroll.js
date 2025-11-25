@@ -9,7 +9,7 @@ export function initSmoothScroll() {
 
       let targetId = link.getAttribute("href");
 
-      // Redirect About to Hero section
+      // Redirect About/Intro to Hero section
       if (targetId === "#about") {
         targetId = "#hero";
       }
@@ -18,15 +18,25 @@ export function initSmoothScroll() {
 
       if (targetSection) {
         const navbarHeight = document.querySelector(".navbar").offsetHeight;
-        const targetPosition = targetSection.offsetTop - navbarHeight;
+        let targetPosition = targetSection.offsetTop - navbarHeight;
+
+        // Special handling for Education link - scroll past the snap threshold
+        if (targetId === "#education") {
+          const heroSection = document.querySelector("#hero");
+          const heroBottom = heroSection.offsetHeight;
+          // Ensure we scroll comfortably past the hero snap threshold (70%)
+          targetPosition = Math.max(targetPosition, heroBottom * 0.75);
+        }
+
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         const duration = 1500;
-        let start = null;
+
+        // Start animation immediately
+        const startTime = performance.now();
 
         function animation(currentTime) {
-          if (start === null) start = currentTime;
-          const timeElapsed = currentTime - start;
+          const timeElapsed = currentTime - startTime;
           const run = easeInOutQuad(
             timeElapsed,
             startPosition,
