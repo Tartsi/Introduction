@@ -7,6 +7,7 @@ import { initSmoothScroll } from "./modules/smoothScroll.js";
 import { initActiveSection } from "./modules/activeSection.js";
 import { initAnimations } from "./modules/animations.js";
 import { initContact } from "./modules/contact.js";
+import { initScrollSnap } from "./modules/scrollSnap.js";
 
 // Initialize all modules when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initActiveSection();
   initAnimations();
   initContact();
+  initScrollSnap();
 
   console.log("JavaScript modules initialized succesfully");
 });
