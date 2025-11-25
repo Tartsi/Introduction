@@ -547,8 +547,8 @@ a {
 }
 
 .section-separator {
-  width: 50vw;
-  height: 2px;
+  width: 40vw;
+  height: 3px;
   margin: 0 auto;
   background: linear-gradient(
     to right,
@@ -558,7 +558,6 @@ a {
     var(--professional-blue) 90%,
     transparent 100%
   );
-  opacity: 0.6;
 }
 
 .education__card {
