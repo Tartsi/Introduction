@@ -369,9 +369,7 @@ a {
   animation: fadeIn 1.25s ease forwards;
   animation-delay: 2.135s;
   transition: all 0.3s ease;
-  align-self: flex-start;
-  margin-left: 50%;
-  transform: translateX(-50%);
+  margin-left: 7rem;
 }
 
 .hero__see-more:hover {
@@ -1036,10 +1034,11 @@ a {
    ======================================== */
 
 .footer {
-  background-color: var(--primary-text);
-  color: white;
+  color: var(--hero-text);
   padding: 2rem;
   text-align: center;
+  text-decoration: underline;
+  font-style: italic;
 }
 
 .footer__content {
