@@ -13,4 +13,5 @@ All notable changes to the Tarvo Lilja Portfolio Website will be documented in t
   - Add animations and overall stylings (color, fonts) to website.
 
 - 26.11.2025
-  - Work on Hero/Intro
+  - Work on Hero/Intro. Add Basic-information section to Hero/Intro.
+  - Tentatively finish Hero/Intro-section. Moving on to 'Education' next!

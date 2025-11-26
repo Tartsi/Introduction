@@ -313,24 +313,12 @@ a {
 }
 
 .hero__basic-info {
-  background: rgba(255, 255, 255, 0.85);
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   opacity: 0;
   animation: fadeIn 1.25s ease forwards;
   animation-delay: 0.685s;
   backdrop-filter: blur(10px);
-}
-
-.hero__basic-info-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-text);
-  margin-bottom: 1.5rem;
-  text-align: center;
-  border-bottom: 2px solid var(--professional-blue);
-  padding-bottom: 0.75rem;
 }
 
 .hero__basic-info-grid {
@@ -347,7 +335,7 @@ a {
 
 .hero__info-label {
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--professional-blue);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -357,6 +345,7 @@ a {
   font-size: 1rem;
   color: var(--primary-text);
   font-weight: 500;
+  font-style: italic;
 }
 
 .hero__title {
