@@ -13,8 +13,8 @@
  * @returns {void}
  */
 export function initAnimations() {
-  // Observer for section titles with typing effect
-  const titleObserver = new IntersectionObserver(
+  // Observer for sections with fade-in from top
+  const sectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (
@@ -22,32 +22,6 @@ export function initAnimations() {
           !entry.target.classList.contains("animated")
         ) {
           entry.target.classList.add("animated");
-
-          // After typing animation completes, remove animation classes
-          setTimeout(() => {
-            entry.target.classList.remove("animated");
-            entry.target.classList.add("typed");
-          }, 2750); // 2s typing + 0.75s buffer
-        }
-      });
-    },
-    {
-      threshold: 0.5,
-      rootMargin: "0px",
-    }
-  );
-
-  // Observer for sections
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("section-visible");
-          // Animate section content
-          const content = entry.target.querySelector(".section__container");
-          if (content && !content.classList.contains("animated")) {
-            content.classList.add("section-content", "animated");
-          }
         }
       });
     },
@@ -56,6 +30,15 @@ export function initAnimations() {
       rootMargin: "0px 0px -50px 0px",
     }
   );
+
+  // Observe all sections (except hero)
+  const sections = document.querySelectorAll("section:not(#hero):not(#about)");
+  sections.forEach((section) => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(-30px)";
+    section.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    sectionObserver.observe(section);
+  });
 
   // Observer for cards and content elements
   const contentObserver = new IntersectionObserver(
@@ -73,18 +56,6 @@ export function initAnimations() {
     }
   );
 
-  // Observe section titles for typing effect
-  const sectionTitles = document.querySelectorAll(".section__title");
-  sectionTitles.forEach((title) => {
-    titleObserver.observe(title);
-  });
-
-  // Observe all sections (except hero)
-  const sections = document.querySelectorAll("section:not(#hero):not(#about)");
-  sections.forEach((section) => {
-    sectionObserver.observe(section);
-  });
-
   // Observe cards and content elements
   const animatedElements = document.querySelectorAll(
     ".education__card, .skills__category, .project-card, .contact__content"
@@ -99,7 +70,7 @@ export function initAnimations() {
 
   // Stagger animation for skills items
   const skillsCategories = document.querySelectorAll(".skills__category");
-  skillsCategories.forEach((category, categoryIndex) => {
+  skillsCategories.forEach((category) => {
     const items = category.querySelectorAll(".skills__item");
     items.forEach((item, index) => {
       item.style.opacity = "0";

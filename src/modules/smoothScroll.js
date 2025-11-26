@@ -23,7 +23,7 @@ export function initSmoothScroll() {
   const navLinks = document.querySelectorAll(".navbar__link");
   const contactButtons = document.querySelectorAll('a[href="#contact"]');
 
-  // Function to handle smooth scroll with locking
+  // Function to handle smooth scroll
   function handleSmoothScroll(e, targetId) {
     e.preventDefault();
 
@@ -38,24 +38,9 @@ export function initSmoothScroll() {
       const navbarHeight = document.querySelector(".navbar").offsetHeight;
       let targetPosition = targetSection.offsetTop - navbarHeight;
 
-      // Special handling for Education link - scroll well past the snap threshold
-      if (targetId === "#education") {
-        const heroSection = document.querySelector("#hero");
-        const heroBottom = heroSection.offsetHeight;
-        // Scroll to 90% of hero height to be well past the snap threshold
-        // This ensures we don't trigger snap-back behavior
-        const safePosition = heroBottom * 0.9;
-        targetPosition = Math.max(targetPosition, safePosition);
-      }
-
       const startPosition = window.pageYOffset;
       const distance = targetPosition - startPosition;
       const duration = 1500;
-
-      // Lock scrolling during animation
-      if (window.setScrollLock) {
-        window.setScrollLock(true);
-      }
 
       // Start animation immediately
       const startTime = performance.now();
@@ -71,11 +56,6 @@ export function initSmoothScroll() {
         window.scrollTo(0, run);
         if (timeElapsed < duration) {
           requestAnimationFrame(animation);
-        } else {
-          // Unlock scrolling after animation completes
-          if (window.setScrollLock) {
-            window.setScrollLock(false);
-          }
         }
       }
 
