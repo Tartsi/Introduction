@@ -22,14 +22,17 @@ export function initActiveSection() {
   const navLinks = document.querySelectorAll(".navbar__link");
 
   function setActiveLink() {
-    const scrollPosition = window.scrollY + 150;
+    const viewportHeight = window.innerHeight;
+    const scrollPosition = window.scrollY + viewportHeight / 2;
 
     // Treat hero section as "intro" for active state
     sections.forEach((section) => {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       const sectionId = section.getAttribute("id");
+      const sectionMiddle = sectionTop + sectionHeight / 2;
 
+      // Check if most of the section is visible (middle point is in viewport)
       if (
         scrollPosition >= sectionTop &&
         scrollPosition < sectionTop + sectionHeight

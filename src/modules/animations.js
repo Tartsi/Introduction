@@ -3,37 +3,89 @@
 /**
  * Initializes animations for various elements on the page using Intersection Observer API.
  *
- * This function sets up two types of animations:
- * 1. Fade-in and slide-up animations for main content sections (education cards, skills categories, project cards, and contact content)
- * 2. Staggered scale animations for individual skill items within skills categories
- *
- * The Intersection Observer is configured with:
- * - threshold: 0.1 (triggers when 10% of element is visible)
- * - rootMargin: "0px 0px -100px 0px" (triggers 100px before element enters viewport from bottom)
+ * This function sets up multiple types of animations:
+ * 1. Typing effect for section titles that animates letter-by-letter
+ * 2. Fade-in animations for entire sections as they scroll into view
+ * 3. Fade-in and slide-up animations for content cards within sections
+ * 4. Staggered scale animations for individual skill items
  *
  * @function initAnimations
  * @returns {void}
- *
- * @example
- * // Call this function after DOM content is loaded
- * initAnimations();
  */
 export function initAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -100px 0px",
-  };
+  // Observer for section titles with typing effect
+  const titleObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting &&
+          !entry.target.classList.contains("animated")
+        ) {
+          entry.target.classList.add("animated");
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-      }
-    });
-  }, observerOptions);
+          // After typing animation completes, remove animation classes
+          setTimeout(() => {
+            entry.target.classList.remove("animated");
+            entry.target.classList.add("typed");
+          }, 2750); // 2s typing + 0.75s buffer
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+      rootMargin: "0px",
+    }
+  );
 
-  // Observe sections and cards
+  // Observer for sections
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("section-visible");
+          // Animate section content
+          const content = entry.target.querySelector(".section__container");
+          if (content && !content.classList.contains("animated")) {
+            content.classList.add("section-content", "animated");
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px",
+    }
+  );
+
+  // Observer for cards and content elements
+  const contentObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+      rootMargin: "0px 0px -100px 0px",
+    }
+  );
+
+  // Observe section titles for typing effect
+  const sectionTitles = document.querySelectorAll(".section__title");
+  sectionTitles.forEach((title) => {
+    titleObserver.observe(title);
+  });
+
+  // Observe all sections (except hero)
+  const sections = document.querySelectorAll("section:not(#hero):not(#about)");
+  sections.forEach((section) => {
+    sectionObserver.observe(section);
+  });
+
+  // Observe cards and content elements
   const animatedElements = document.querySelectorAll(
     ".education__card, .skills__category, .project-card, .contact__content"
   );
@@ -42,7 +94,7 @@ export function initAnimations() {
     element.style.opacity = "0";
     element.style.transform = "translateY(30px)";
     element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    observer.observe(element);
+    contentObserver.observe(element);
   });
 
   // Stagger animation for skills items
@@ -53,11 +105,24 @@ export function initAnimations() {
       item.style.opacity = "0";
       item.style.transform = "scale(0.8)";
 
-      setTimeout(() => {
-        item.style.transition = "opacity 0.4s ease, transform 0.4s ease";
-        item.style.opacity = "1";
-        item.style.transform = "scale(1)";
-      }, categoryIndex * 200 + index * 50);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                item.style.transition =
+                  "opacity 0.4s ease, transform 0.4s ease";
+                item.style.opacity = "1";
+                item.style.transform = "scale(1)";
+              }, index * 50);
+              observer.unobserve(item);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(item);
     });
   });
 }

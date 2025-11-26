@@ -100,20 +100,6 @@ export function initScrollSnap() {
       }
     }
 
-    // Snap behavior for hero section when scrolling up from education
-    if (
-      scrollDirection === "up" &&
-      currentScrollY < educationTop &&
-      currentScrollY > heroBottom * 0.3
-    ) {
-      // User is scrolling up from education towards hero
-      setScrollLock(true);
-      smoothScrollTo(0, 1800); // 1800ms = 1500ms * 1.2 (20% slower)
-      setTimeout(() => {
-        setScrollLock(false);
-      }, 1800);
-    }
-
     lastScrollY = currentScrollY;
   }
 

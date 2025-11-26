@@ -553,6 +553,44 @@ a {
   position: relative;
   padding-bottom: 1rem;
   font-family: "Brush Script MT", "Lucida Handwriting", cursive;
+  opacity: 0;
+}
+
+.section__title.animated {
+  opacity: 1;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto 3rem;
+  border-right: 3px solid var(--professional-blue);
+  animation: typing 2s steps(30, end) forwards, blink-caret 0.75s step-end 2s 3;
+}
+
+.section__title.typed {
+  opacity: 1;
+  border-right: none;
+  white-space: normal;
+  overflow: visible;
+  display: block;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--professional-blue);
+  }
 }
 
 .section__title::after {
@@ -565,6 +603,18 @@ a {
   height: 4px;
   background-color: var(--professional-blue);
   border-radius: 2px;
+}
+
+/* Section content fade-in animations */
+.section-content {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section-content.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section-separator {

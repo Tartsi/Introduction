@@ -28,7 +28,7 @@ export function initSmoothScroll() {
     e.preventDefault();
 
     // Redirect About/Intro to Hero section
-    if (targetId === "#about") {
+    if (targetId === "#about" || targetId === "#intro") {
       targetId = "#hero";
     }
 
