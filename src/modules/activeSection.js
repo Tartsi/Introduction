@@ -1,5 +1,22 @@
 // ACTIVE SECTION MODULE - Highlights active nav link based on scroll position
 
+/**
+ * Initializes active section highlighting in the navigation bar based on scroll position.
+ * Monitors scroll events and updates the active state of navigation links to reflect
+ * the currently visible section. The hero section is treated as the "about" section
+ * for navigation highlighting purposes.
+ *
+ * @function initActiveSection
+ * @returns {void}
+ *
+ * @description
+ * - Selects all sections with an id attribute and all navigation links
+ * - Adds a scroll event listener that determines which section is currently in view
+ * - Updates the 'active' class on navigation links based on scroll position
+ * - Uses a 150px offset from the top for scroll position calculation
+ * - Special handling: when the hero section is in view, the "About" link is highlighted
+ * - Executes once on initialization to set the correct active state on page load
+ */
 export function initActiveSection() {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".navbar__link");

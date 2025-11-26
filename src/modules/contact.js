@@ -1,5 +1,13 @@
 // CONTACT MODULE - Handles contact interactions
 
+/**
+ * Initializes the contact page functionality.
+ * Sets up smooth hover effects for contact items (translating them up on mouseenter)
+ * and handles the CV download button click event.
+ *
+ * @function initContact
+ * @returns {void}
+ */
 export function initContact() {
   // Add smooth hover effects for contact items
   const contactItems = document.querySelectorAll(".contact__item");

@@ -1,5 +1,37 @@
 // SCROLL SNAP MODULE - Handles auto-hiding header and scroll-snap behavior
 
+/**
+ * Initializes scroll snap behavior for the page.
+ *
+ * This function manages:
+ * - Auto-hiding navbar that appears when scrolling past the hero section
+ * - Smooth scroll snapping between hero and education sections
+ * - Scroll lock mechanism during animated transitions
+ * - Click handler for "see more" trigger to scroll to education section
+ *
+ * The scroll behavior includes:
+ * - Navbar visibility based on scroll position (hidden in hero, visible after 50% of hero height)
+ * - Auto-snap to education section when scrolling down past 50% of hero
+ * - Auto-snap back to hero section when scrolling up from education
+ * - Smooth scroll animations with easeInOutQuad easing function
+ * - Scroll event throttling for performance optimization
+ *
+ * @function initScrollSnap
+ * @exports initScrollSnap
+ * @returns {void}
+ *
+ * @requires DOM elements with the following selectors:
+ * - `.navbar` - Navigation bar element
+ * - `#hero` - Hero section element
+ * - `#education` - Education section element
+ * - `#see-more-trigger` - Optional trigger button to scroll to education
+ *
+ * @sideeffects
+ * - Modifies DOM element classes and styles
+ * - Adds global `window.setScrollLock` function
+ * - Attaches event listeners to window scroll and see-more-trigger click
+ * - Controls document body overflow styling
+ */
 export function initScrollSnap() {
   const navbar = document.querySelector(".navbar");
   const heroSection = document.querySelector("#hero");

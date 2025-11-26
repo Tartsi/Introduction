@@ -1,5 +1,18 @@
 // NAVBAR MODULE - Handles navigation interactions
 
+/**
+ * Initializes the navigation bar functionality including:
+ * - Mobile menu toggle on hamburger button click
+ * - Automatic menu closure when navigation links are clicked
+ * - Shadow effect on navbar when scrolling past 50px
+ * - Menu closure when clicking outside the navbar
+ *
+ * @returns {void} Returns early if required DOM elements are not found
+ *
+ * @example
+ * // Call this function after DOM content is loaded
+ * initNavbar();
+ */
 export function initNavbar() {
   const navbar = document.querySelector(".navbar");
   const navbarToggle = document.querySelector(".navbar__toggle");

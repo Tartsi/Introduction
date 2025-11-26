@@ -1,5 +1,23 @@
 // ANIMATIONS MODULE - Handles scroll-based animations
 
+/**
+ * Initializes animations for various elements on the page using Intersection Observer API.
+ *
+ * This function sets up two types of animations:
+ * 1. Fade-in and slide-up animations for main content sections (education cards, skills categories, project cards, and contact content)
+ * 2. Staggered scale animations for individual skill items within skills categories
+ *
+ * The Intersection Observer is configured with:
+ * - threshold: 0.1 (triggers when 10% of element is visible)
+ * - rootMargin: "0px 0px -100px 0px" (triggers 100px before element enters viewport from bottom)
+ *
+ * @function initAnimations
+ * @returns {void}
+ *
+ * @example
+ * // Call this function after DOM content is loaded
+ * initAnimations();
+ */
 export function initAnimations() {
   const observerOptions = {
     threshold: 0.1,

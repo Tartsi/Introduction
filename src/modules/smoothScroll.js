@@ -1,5 +1,24 @@
 // SMOOTH SCROLL MODULE - Handles smooth scrolling to sections
 
+/**
+ * Initializes smooth scrolling functionality for navigation links and contact buttons.
+ *
+ * This function sets up event listeners on navbar links and contact buttons to enable
+ * smooth animated scrolling to target sections. It includes special handling for:
+ * - Redirecting "about" links to the hero section
+ * - Adjusting scroll position to account for fixed navbar height
+ * - Preventing snap-back behavior when scrolling to the education section
+ * - Locking scroll during animation to prevent user interference
+ *
+ * The scroll animation uses an ease-in-out quadratic timing function with a 1500ms duration.
+ *
+ * @function initSmoothScroll
+ * @returns {void}
+ *
+ * @example
+ * // Initialize smooth scrolling on page load
+ * initSmoothScroll();
+ */
 export function initSmoothScroll() {
   const navLinks = document.querySelectorAll(".navbar__link");
   const contactButtons = document.querySelectorAll('a[href="#contact"]');
