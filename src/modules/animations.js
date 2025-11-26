@@ -36,7 +36,7 @@ export function initAnimations() {
   sections.forEach((section) => {
     section.style.opacity = "0";
     section.style.transform = "translateY(-30px)";
-    section.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+    section.style.transition = "opacity 1.0s ease, transform 1.0s ease";
     sectionObserver.observe(section);
   });
 
@@ -64,7 +64,7 @@ export function initAnimations() {
   animatedElements.forEach((element) => {
     element.style.opacity = "0";
     element.style.transform = "translateY(30px)";
-    element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+    element.style.transition = "opacity 0.75s ease, transform 0.75s ease";
     contentObserver.observe(element);
   });
 
@@ -82,10 +82,10 @@ export function initAnimations() {
             if (entry.isIntersecting) {
               setTimeout(() => {
                 item.style.transition =
-                  "opacity 0.4s ease, transform 0.4s ease";
+                  "opacity 0.5s ease, transform 0.5s ease";
                 item.style.opacity = "1";
                 item.style.transform = "scale(1)";
-              }, index * 50);
+              }, index * 62.5);
               observer.unobserve(item);
             }
           });

@@ -23,6 +23,8 @@
 export function initScrollSnap() {
   const navbar = document.querySelector(".navbar");
   const heroSection = document.querySelector("#hero");
+  const educationSection = document.querySelector("#education");
+  const seeMoreTrigger = document.querySelector("#see-more-trigger");
 
   // Make navbar initially hidden
   navbar.classList.remove("visible");
@@ -48,6 +50,13 @@ export function initScrollSnap() {
     }
     scrollTimeout = setTimeout(handleScroll, 50);
   });
+
+  // Handle See More button click with snap-scroll to Education
+  if (seeMoreTrigger && educationSection) {
+    seeMoreTrigger.addEventListener("click", () => {
+      educationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 
   // Initial check
   handleScroll();
