@@ -51,10 +51,34 @@ export function initScrollSnap() {
     scrollTimeout = setTimeout(handleScroll, 50);
   });
 
-  // Handle See More button click with snap-scroll to Education
+  // Handle See More button click with snap-scroll to Education (slowed by 75%)
   if (seeMoreTrigger && educationSection) {
     seeMoreTrigger.addEventListener("click", () => {
-      educationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      const targetPosition = educationSection.offsetTop;
+      const startPosition = window.scrollY;
+      const distance = targetPosition - startPosition;
+      const duration = 6000; // Slowed down by 75% (original ~1500ms * 4 = 6000ms)
+      let start = null;
+
+      function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+
+        // Easing function
+        const easeInOutQuad =
+          progress < 0.5
+            ? 2 * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+        window.scrollTo(0, startPosition + distance * easeInOutQuad);
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        }
+      }
+
+      requestAnimationFrame(animation);
     });
   }
 

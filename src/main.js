@@ -8,6 +8,7 @@ import { initActiveSection } from "./modules/activeSection.js";
 import { initAnimations } from "./modules/animations.js";
 import { initContact } from "./modules/contact.js";
 import { initScrollSnap } from "./modules/scrollSnap.js";
+import { initEducation } from "./modules/education.js";
 
 // Initialize all modules when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAnimations();
   initContact();
   initScrollSnap();
+  initEducation();
 
   console.log("JavaScript modules initialized succesfully");
 });
