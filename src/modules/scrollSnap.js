@@ -51,13 +51,13 @@ export function initScrollSnap() {
     scrollTimeout = setTimeout(handleScroll, 50);
   });
 
-  // Handle See More button click with snap-scroll to Education (slowed by 75%)
+  // Handle See More button click with snap-scroll to Education (slowed by 40%)
   if (seeMoreTrigger && educationSection) {
     seeMoreTrigger.addEventListener("click", () => {
       const targetPosition = educationSection.offsetTop;
       const startPosition = window.scrollY;
       const distance = targetPosition - startPosition;
-      const duration = 6000; // Slowed down by 75% (original ~1500ms * 4 = 6000ms)
+      const duration = 2100; // Slowed down by 40% (original ~1500ms * 1.4 = 2100ms)
       let start = null;
 
       function animation(currentTime) {

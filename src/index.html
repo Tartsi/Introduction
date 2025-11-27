@@ -112,112 +112,157 @@
     <section id="education" class="education">
       <div class="section__container">
         <h2 class="section__title">Education</h2>
-        <div class="education__cards-container">
-          <!-- Bachelor Card (Top/Active by default) -->
+        <div class="education__timeline">
+          <!-- Upper Elementary School (First - 2015) -->
           <div
-            class="education__card education__card--top active"
-            data-education-card="bachelor"
-          >
-            <div class="education__header">
-              <div>
-                <h3 class="education__degree">
-                  Bachelor of Science in Computer Science
-                </h3>
-                <p class="education__institution">University of Helsinki</p>
-              </div>
-              <span class="education__year">2025</span>
-            </div>
-            <div class="education__details">
-              <h4 class="education__subtitle">Key Courses & Minors</h4>
-              <ul class="education__list">
-                <li class="education__list-item">Software Engineering</li>
-                <li class="education__list-item">
-                  Algorithms & Data Structures
-                </li>
-                <li class="education__list-item">Web Development</li>
-                <li class="education__list-item">Database Systems</li>
-                <li class="education__list-item">Artificial Intelligence</li>
-                <li class="education__list-item">Statistics & Data Analysis</li>
-              </ul>
-              <div class="education__thesis">
-                <h4 class="education__subtitle">Bachelor's Thesis</h4>
-                <p class="education__thesis-text">
-                  Explored modern web development practices and their
-                  application in building scalable, user-friendly applications.
-                  The thesis focused on comparing different architectural
-                  approaches and their impact on maintainability, performance,
-                  and developer experience in real-world projects.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- High School Card (Left bottom) -->
-          <div
-            class="education__card education__card--left"
-            data-education-card="highschool"
-          >
-            <div class="education__header">
-              <div>
-                <h3 class="education__degree">High School Diploma</h3>
-                <p class="education__institution">Helsinki High School</p>
-              </div>
-              <span class="education__year">2018</span>
-            </div>
-            <div class="education__details">
-              <h4 class="education__subtitle">Focus Areas</h4>
-              <ul class="education__list">
-                <li class="education__list-item">Mathematics</li>
-                <li class="education__list-item">Physics</li>
-                <li class="education__list-item">Chemistry</li>
-                <li class="education__list-item">Computer Science</li>
-                <li class="education__list-item">English Language</li>
-                <li class="education__list-item">Swedish Language</li>
-              </ul>
-              <div class="education__thesis">
-                <h4 class="education__subtitle">Achievements</h4>
-                <p class="education__thesis-text">
-                  Graduated with honors, specializing in natural sciences and
-                  mathematics. Participated in national mathematics competitions
-                  and achieved recognition for academic excellence. Developed
-                  strong analytical and problem-solving skills that formed the
-                  foundation for computer science studies.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Upper Elementary School Card (Right bottom) -->
-          <div
-            class="education__card education__card--right"
+            class="education__timeline-item"
             data-education-card="elementary"
           >
-            <div class="education__header">
-              <div>
-                <h3 class="education__degree">Upper Elementary School</h3>
-                <p class="education__institution">Helsinki Elementary School</p>
+            <div class="education__card">
+              <div class="education__header">
+                <div>
+                  <h3 class="education__degree">Upper Elementary School</h3>
+                  <p class="education__institution">
+                    Helsinki Elementary School
+                  </p>
+                </div>
+                <span class="education__year">2015</span>
               </div>
-              <span class="education__year">2015</span>
+              <div class="education__details">
+                <h4 class="education__subtitle">Key Subjects</h4>
+                <ul class="education__list">
+                  <li class="education__list-item">Mathematics</li>
+                  <li class="education__list-item">Science</li>
+                  <li class="education__list-item">Finnish Language</li>
+                  <li class="education__list-item">English Language</li>
+                  <li class="education__list-item">Arts & Crafts</li>
+                  <li class="education__list-item">Physical Education</li>
+                </ul>
+                <div class="education__thesis">
+                  <h4 class="education__subtitle">Early Development</h4>
+                  <p class="education__thesis-text">
+                    Completed comprehensive elementary education with excellent
+                    grades. Developed foundational skills in mathematics and
+                    logical thinking. Showed early interest in technology and
+                    computers, participating in coding clubs and technology
+                    workshops during after-school activities.
+                  </p>
+                </div>
+              </div>
             </div>
-            <div class="education__details">
-              <h4 class="education__subtitle">Key Subjects</h4>
-              <ul class="education__list">
-                <li class="education__list-item">Mathematics</li>
-                <li class="education__list-item">Science</li>
-                <li class="education__list-item">Finnish Language</li>
-                <li class="education__list-item">English Language</li>
-                <li class="education__list-item">Arts & Crafts</li>
-                <li class="education__list-item">Physical Education</li>
-              </ul>
-              <div class="education__thesis">
-                <h4 class="education__subtitle">Early Development</h4>
-                <p class="education__thesis-text">
-                  Completed comprehensive elementary education with excellent
-                  grades. Developed foundational skills in mathematics and
-                  logical thinking. Showed early interest in technology and
-                  computers, participating in coding clubs and technology
-                  workshops during after-school activities.
-                </p>
+          </div>
+
+          <!-- Arrow connector -->
+          <div class="education__timeline-item education__arrow">
+            <svg
+              class="education__arrow-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4L12 20M12 20L6 14M12 20L18 14"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <!-- High School (Second - 2018) -->
+          <div
+            class="education__timeline-item"
+            data-education-card="highschool"
+          >
+            <div class="education__card">
+              <div class="education__header">
+                <div>
+                  <h3 class="education__degree">High School Diploma</h3>
+                  <p class="education__institution">Helsinki High School</p>
+                </div>
+                <span class="education__year">2018</span>
+              </div>
+              <div class="education__details">
+                <h4 class="education__subtitle">Focus Areas</h4>
+                <ul class="education__list">
+                  <li class="education__list-item">Mathematics</li>
+                  <li class="education__list-item">Physics</li>
+                  <li class="education__list-item">Chemistry</li>
+                  <li class="education__list-item">Computer Science</li>
+                  <li class="education__list-item">English Language</li>
+                  <li class="education__list-item">Swedish Language</li>
+                </ul>
+                <div class="education__thesis">
+                  <h4 class="education__subtitle">Achievements</h4>
+                  <p class="education__thesis-text">
+                    Graduated with honors, specializing in natural sciences and
+                    mathematics. Participated in national mathematics
+                    competitions and achieved recognition for academic
+                    excellence. Developed strong analytical and problem-solving
+                    skills that formed the foundation for computer science
+                    studies.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Arrow connector -->
+          <div class="education__timeline-item education__arrow">
+            <svg
+              class="education__arrow-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 4L12 20M12 20L6 14M12 20L18 14"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+
+          <!-- Bachelor of Science (Third - 2025) -->
+          <div class="education__timeline-item" data-education-card="bachelor">
+            <div class="education__card">
+              <div class="education__header">
+                <div>
+                  <h3 class="education__degree">
+                    Bachelor of Science in Computer Science
+                  </h3>
+                  <p class="education__institution">University of Helsinki</p>
+                </div>
+                <span class="education__year">2025</span>
+              </div>
+              <div class="education__details">
+                <h4 class="education__subtitle">Key Courses & Minors</h4>
+                <ul class="education__list">
+                  <li class="education__list-item">Software Engineering</li>
+                  <li class="education__list-item">
+                    Algorithms & Data Structures
+                  </li>
+                  <li class="education__list-item">Web Development</li>
+                  <li class="education__list-item">Database Systems</li>
+                  <li class="education__list-item">Artificial Intelligence</li>
+                  <li class="education__list-item">
+                    Statistics & Data Analysis
+                  </li>
+                </ul>
+                <div class="education__thesis">
+                  <h4 class="education__subtitle">Bachelor's Thesis</h4>
+                  <p class="education__thesis-text">
+                    Explored modern web development practices and their
+                    application in building scalable, user-friendly
+                    applications. The thesis focused on comparing different
+                    architectural approaches and their impact on
+                    maintainability, performance, and developer experience in
+                    real-world projects.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
