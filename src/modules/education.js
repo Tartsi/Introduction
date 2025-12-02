@@ -45,4 +45,35 @@ export function initEducation() {
   timelineItems.forEach((item) => {
     observer.observe(item);
   });
+
+  // Make arrows clickable to scroll to next card
+  const arrows = document.querySelectorAll(".education__arrow");
+  arrows.forEach((arrow) => {
+    arrow.style.cursor = "pointer";
+    arrow.addEventListener("click", () => {
+      // Find the next education card (skip the next arrow)
+      let nextElement = arrow.nextElementSibling;
+      while (
+        nextElement &&
+        nextElement.classList.contains("education__arrow")
+      ) {
+        nextElement = nextElement.nextElementSibling;
+      }
+
+      if (
+        nextElement &&
+        nextElement.classList.contains("education__timeline-item")
+      ) {
+        const targetCard = nextElement.querySelector(".education__card");
+        if (targetCard) {
+          // Smooth scroll to the next card
+          const targetPosition = nextElement.offsetTop - 100; // 100px offset for better view
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
+  });
 }

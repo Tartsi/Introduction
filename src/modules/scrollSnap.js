@@ -34,8 +34,8 @@ export function initScrollSnap() {
     const currentScrollY = window.scrollY;
     const heroBottom = heroSection.offsetHeight;
 
-    // Determine if we're in hero section
-    if (currentScrollY < heroBottom * 0.5) {
+    // Determine if we're in hero section - disappear when hero is barely visible (10%)
+    if (currentScrollY < heroBottom * 0.1) {
       navbar.classList.remove("visible");
     } else {
       navbar.classList.add("visible");
