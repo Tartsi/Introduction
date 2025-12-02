@@ -83,66 +83,93 @@ a {
   top: -100px;
   left: 0;
   right: 0;
-  background-color: rgba(222, 222, 222, 0.95);
-  backdrop-filter: blur(10px);
+  background-color: transparent;
   padding: 1.25rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: top 0.3s ease, box-shadow 0.3s ease;
-  border-bottom: 2px solid rgba(26, 26, 26, 0.1);
+  transition: top 0.3s ease;
 }
 
 .navbar.visible {
   top: 0;
 }
 
-.navbar.scrolled {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-}
-
-.navbar__logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--primary-text);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.navbar__logo:hover {
-  color: var(--professional-blue);
-  transform: scale(1.05);
-}
-
-.navbar__menu {
+/* Language selector container (left side) */
+.navbar__lang-container {
+  position: relative;
   display: flex;
-  gap: 2rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  align-items: center;
 }
 
-.navbar__lang-selector {
+.navbar__lang-trigger {
+  background: none;
+  border: none;
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.navbar__lang-trigger:hover {
+  color: var(--professional-blue);
+}
+
+.navbar__lang-current {
+  pointer-events: none;
+}
+
+.navbar__lang-menu {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  margin-left: auto;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-left: 4rem;
+}
+
+.navbar__lang-container:hover .navbar__lang-menu,
+.navbar__lang-container.active .navbar__lang-menu,
+.navbar__lang-container.hover .navbar__lang-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .navbar__lang-option {
   color: var(--primary-text);
-  text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
   padding: 0.5rem;
   transition: all 0.3s ease;
   cursor: pointer;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: slideIn 0.4s ease forwards;
+}
+
+.navbar__lang-menu .navbar__lang-option:first-child {
+  animation-delay: 0.05s;
+}
+
+.navbar__lang-menu .navbar__lang-separator {
+  opacity: 0;
+  animation: slideIn 0.4s ease forwards 0.1s;
+}
+
+.navbar__lang-menu .navbar__lang-option:last-child {
+  animation-delay: 0.15s;
 }
 
 .navbar__lang-option:hover {
@@ -150,10 +177,46 @@ a {
   transform: scale(1.1);
 }
 
+.navbar__lang-option.active {
+  color: var(--professional-blue);
+}
+
 .navbar__lang-separator {
   color: var(--primary-text);
   font-weight: 300;
   opacity: 0.5;
+}
+
+/* Menu container (right side) */
+.navbar__menu-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.navbar__menu {
+  position: absolute;
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar__menu-container:hover .navbar__menu,
+.navbar__menu-container.active .navbar__menu,
+.navbar__menu-container.hover .navbar__menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .navbar__link {
@@ -163,6 +226,36 @@ a {
   position: relative;
   padding: 0.5rem 0;
   transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: slideIn 0.4s ease forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.navbar__menu li:nth-child(1) .navbar__link {
+  animation-delay: 0.05s;
+}
+
+.navbar__menu li:nth-child(2) .navbar__link {
+  animation-delay: 0.1s;
+}
+
+.navbar__menu li:nth-child(3) .navbar__link {
+  animation-delay: 0.15s;
+}
+
+.navbar__menu li:nth-child(4) .navbar__link {
+  animation-delay: 0.2s;
+}
+
+.navbar__menu li:nth-child(5) .navbar__link {
+  animation-delay: 0.25s;
 }
 
 .navbar__link::after {
@@ -191,13 +284,19 @@ a {
 }
 
 .navbar__toggle {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 4px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.navbar__toggle:hover {
+  transform: scale(1.1);
 }
 
 .navbar__toggle span {
@@ -226,38 +325,33 @@ a {
     padding: 1rem 1.5rem;
   }
 
-  .navbar__toggle {
-    display: flex;
+  .navbar__lang-menu {
+    padding-left: 3rem;
   }
 
   .navbar__menu {
     position: fixed;
     top: 70px;
-    left: 0;
     right: 0;
+    left: auto;
     flex-direction: column;
-    background-color: rgba(237, 230, 230, 0.98);
-    backdrop-filter: blur(10px);
     padding: 2rem;
     gap: 1.5rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
   }
 
-  .navbar__menu.active {
-    transform: translateX(0);
+  .navbar__menu-container.active .navbar__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .navbar__link {
     font-size: 1.25rem;
-  }
-
-  .navbar__lang-selector {
-    position: absolute;
-    top: 1rem;
-    right: 4rem;
-    margin-left: 0;
+    text-align: right;
   }
 }
 

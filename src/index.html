@@ -13,23 +13,29 @@
   <body>
     <!-- Navigation -->
     <nav class="navbar">
-      <a href="#hero" class="navbar__logo">Tarvo Lilja</a>
-      <button class="navbar__toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <ul class="navbar__menu">
-        <li><a href="#intro" class="navbar__link">Intro</a></li>
-        <li><a href="#education" class="navbar__link">Education</a></li>
-        <li><a href="#skills" class="navbar__link">Skills</a></li>
-        <li><a href="#projects" class="navbar__link">Projects</a></li>
-        <li><a href="#contact" class="navbar__link">Contact</a></li>
-      </ul>
-      <div class="navbar__lang-selector">
-        <span class="navbar__lang-option">FIN</span>
-        <span class="navbar__lang-separator">|</span>
-        <span class="navbar__lang-option">ENG</span>
+      <div class="navbar__lang-container">
+        <button class="navbar__lang-trigger" aria-label="Select language">
+          <span class="navbar__lang-current">ENG</span>
+        </button>
+        <div class="navbar__lang-menu">
+          <span class="navbar__lang-option active" data-lang="eng">ENG</span>
+          <span class="navbar__lang-separator">|</span>
+          <span class="navbar__lang-option" data-lang="fin">FIN</span>
+        </div>
+      </div>
+      <div class="navbar__menu-container">
+        <button class="navbar__toggle" aria-label="Toggle navigation">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="navbar__menu">
+          <li><a href="#intro" class="navbar__link">Intro</a></li>
+          <li><a href="#education" class="navbar__link">Education</a></li>
+          <li><a href="#skills" class="navbar__link">Skills</a></li>
+          <li><a href="#projects" class="navbar__link">Projects</a></li>
+          <li><a href="#contact" class="navbar__link">Contact</a></li>
+        </ul>
       </div>
     </nav>
 
