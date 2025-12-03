@@ -46,34 +46,32 @@ export function initEducation() {
     observer.observe(item);
   });
 
-  // Make arrows clickable to scroll to next card
+  // Make arrows clickable to scroll to specific cards (hardcoded approach)
   const arrows = document.querySelectorAll(".education__arrow");
-  arrows.forEach((arrow) => {
-    arrow.style.cursor = "pointer";
-    arrow.addEventListener("click", () => {
-      // Find the next education card (skip the next arrow)
-      let nextElement = arrow.nextElementSibling;
-      while (
-        nextElement &&
-        nextElement.classList.contains("education__arrow")
-      ) {
-        nextElement = nextElement.nextElementSibling;
-      }
+  const highschoolCard = document.querySelector(
+    '[data-education-card="highschool"]'
+  );
+  const bachelorCard = document.querySelector(
+    '[data-education-card="bachelor"]'
+  );
 
-      if (
-        nextElement &&
-        nextElement.classList.contains("education__timeline-item")
-      ) {
-        const targetCard = nextElement.querySelector(".education__card");
-        if (targetCard) {
-          // Smooth scroll to the next card
-          const targetPosition = nextElement.offsetTop;
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          });
-        }
-      }
+  if (arrows.length >= 2 && highschoolCard && bachelorCard) {
+    // First arrow (after elementary) -> Always scrolls to High School card (second card)
+    arrows[0].style.cursor = "pointer";
+    arrows[0].addEventListener("click", () => {
+      highschoolCard.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     });
-  });
+
+    // Second arrow (after high school) -> Always scrolls to Bachelor card (third card)
+    arrows[1].style.cursor = "pointer";
+    arrows[1].addEventListener("click", () => {
+      bachelorCard.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    });
+  }
 }
