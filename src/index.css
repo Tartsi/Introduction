@@ -947,6 +947,39 @@ section.animated {
   opacity: 0.9;
 }
 
+/* Education "Skills" navigation trigger (same styling as Hero "See More") */
+.education__see-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeIn 1.25s ease forwards;
+  animation-delay: 2.135s;
+  transition: all 0.3s ease;
+  margin: 3rem auto 0;
+  padding: 1rem;
+}
+
+.education__see-more:hover {
+  transform: translateY(-5px);
+}
+
+.education__see-more-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.education__see-more-arrow {
+  font-size: 1.5rem;
+  color: var(--professional-blue);
+  animation: bounce 2s ease-in-out infinite;
+}
+
 /* ========================================
    SKILLS SECTION STYLES
    ======================================== */

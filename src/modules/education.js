@@ -59,19 +59,82 @@ export function initEducation() {
     // First arrow (after elementary) -> Always scrolls to High School card (second card)
     arrows[0].style.cursor = "pointer";
     arrows[0].addEventListener("click", () => {
-      highschoolCard.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      // Trigger animation slightly before scroll finishes (after 70% of scroll duration)
+      setTimeout(() => {
+        const timelineItem = highschoolCard.closest(
+          ".education__timeline-item"
+        );
+        if (timelineItem && !timelineItem.classList.contains("animated")) {
+          timelineItem.classList.add("animated");
+        }
+      }, 1050); // 70% of 1500ms scroll duration
+
+      smoothScrollTo(highschoolCard, 1500);
     });
 
     // Second arrow (after high school) -> Always scrolls to Bachelor card (third card)
     arrows[1].style.cursor = "pointer";
     arrows[1].addEventListener("click", () => {
-      bachelorCard.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      // Trigger animation slightly before scroll finishes (after 70% of scroll duration)
+      setTimeout(() => {
+        const timelineItem = bachelorCard.closest(".education__timeline-item");
+        if (timelineItem && !timelineItem.classList.contains("animated")) {
+          timelineItem.classList.add("animated");
+        }
+      }, 1050); // 70% of 1500ms scroll duration
+
+      smoothScrollTo(bachelorCard, 1500);
     });
   }
+
+  // Setup "Skills" navigation trigger (same as Hero "See More")
+  const skillsTrigger = document.getElementById("skills-trigger");
+  if (skillsTrigger) {
+    skillsTrigger.addEventListener("click", () => {
+      const skillsSection = document.getElementById("skills");
+      if (skillsSection) {
+        skillsSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  }
+}
+
+/**
+ * Custom smooth scroll function with configurable duration
+ * @param {HTMLElement} element - Target element to scroll to
+ * @param {number} duration - Scroll duration in milliseconds
+ */
+function smoothScrollTo(element, duration) {
+  const targetPosition =
+    element.getBoundingClientRect().top + window.pageYOffset;
+  const startPosition = window.pageYOffset;
+  const distance =
+    targetPosition -
+    startPosition -
+    window.innerHeight / 2 +
+    element.offsetHeight / 2;
+  let startTime = null;
+
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+
+    // Easing function for smooth animation
+    const ease =
+      progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    window.scrollTo(0, startPosition + distance * ease);
+
+    if (timeElapsed < duration) {
+      requestAnimationFrame(animation);
+    }
+  }
+
+  requestAnimationFrame(animation);
 }
