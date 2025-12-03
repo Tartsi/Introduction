@@ -67,7 +67,7 @@ export function initEducation() {
         const targetCard = nextElement.querySelector(".education__card");
         if (targetCard) {
           // Smooth scroll to the next card
-          const targetPosition = nextElement.offsetTop - 100; // 100px offset for better view
+          const targetPosition = nextElement.offsetTop;
           window.scrollTo({
             top: targetPosition,
             behavior: "smooth",
