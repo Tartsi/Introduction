@@ -947,19 +947,18 @@ section.animated {
   opacity: 0.9;
 }
 
-/* Education "Skills" navigation trigger (same styling as Hero "See More") */
+/* Education "Skills" navigation trigger */
 .education__see-more {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
   cursor: pointer;
   opacity: 0;
   animation: fadeIn 1.25s ease forwards;
   animation-delay: 2.135s;
   transition: all 0.3s ease;
-  margin: 3rem auto 0;
   padding: 1rem;
+  margin-bottom: 3rem;
 }
 
 .education__see-more:hover {
