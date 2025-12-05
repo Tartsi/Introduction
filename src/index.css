@@ -892,7 +892,6 @@ section.animated {
   font-size: 1rem;
   color: var(--primary-text);
   font-weight: 600;
-  background-color: rgba(255, 255, 255, 0.8);
   padding: 0.5rem 1rem;
   border-radius: 6px;
   white-space: nowrap;
@@ -931,13 +930,6 @@ section.animated {
   background-color: var(--professional-blue);
   color: white;
   transform: translateY(-2px);
-}
-
-.education__thesis {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid var(--professional-blue);
 }
 
 .education__thesis-text {
