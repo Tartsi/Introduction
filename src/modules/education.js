@@ -46,6 +46,29 @@ export function initEducation() {
     observer.observe(item);
   });
 
+  // Animate "Skills" trigger after bachelor card finishes
+  const bachelorItem = document.querySelector(
+    '[data-education-card="bachelor"]'
+  );
+  const skillsTriggerElement = document.getElementById("skills-trigger");
+  if (bachelorItem && skillsTriggerElement) {
+    const bachelorObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Bachelor card starts animating, wait for it to finish (1200ms) + stagger delay
+            setTimeout(() => {
+              skillsTriggerElement.classList.add("animated");
+            }, 1600); // Animation duration + buffer
+            bachelorObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -100px 0px" }
+    );
+    bachelorObserver.observe(bachelorItem.closest(".education__timeline-item"));
+  }
+
   // Make arrows clickable to scroll to specific cards (hardcoded approach)
   const arrows = document.querySelectorAll(".education__arrow");
   const highschoolCard = document.querySelector(
@@ -59,6 +82,9 @@ export function initEducation() {
     // First arrow (after elementary) -> Always scrolls to High School card (second card)
     arrows[0].style.cursor = "pointer";
     arrows[0].addEventListener("click", () => {
+      // Start scroll immediately
+      smoothScrollTo(highschoolCard, 1500);
+
       // Trigger animation slightly before scroll finishes (after 70% of scroll duration)
       setTimeout(() => {
         const timelineItem = highschoolCard.closest(
@@ -68,13 +94,14 @@ export function initEducation() {
           timelineItem.classList.add("animated");
         }
       }, 1050); // 70% of 1500ms scroll duration
-
-      smoothScrollTo(highschoolCard, 1500);
     });
 
     // Second arrow (after high school) -> Always scrolls to Bachelor card (third card)
     arrows[1].style.cursor = "pointer";
     arrows[1].addEventListener("click", () => {
+      // Start scroll immediately
+      smoothScrollTo(bachelorCard, 1500);
+
       // Trigger animation slightly before scroll finishes (after 70% of scroll duration)
       setTimeout(() => {
         const timelineItem = bachelorCard.closest(".education__timeline-item");
@@ -82,8 +109,6 @@ export function initEducation() {
           timelineItem.classList.add("animated");
         }
       }, 1050); // 70% of 1500ms scroll duration
-
-      smoothScrollTo(bachelorCard, 1500);
     });
   }
 

@@ -56,9 +56,9 @@ export function initAnimations() {
     }
   );
 
-  // Observe cards and content elements
+  // Observe cards and content elements (excluding skills__category as it has its own observer)
   const animatedElements = document.querySelectorAll(
-    ".education__card, .skills__category, .project-card, .contact__content"
+    ".education__card, .project-card, .contact__content"
   );
 
   animatedElements.forEach((element) => {
@@ -68,32 +68,27 @@ export function initAnimations() {
     contentObserver.observe(element);
   });
 
-  // Stagger animation for skills items
+  // Skills categories animation - both sides animate simultaneously
   const skillsCategories = document.querySelectorAll(".skills__category");
+  const skillsCategoriesObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (
+          entry.isIntersecting &&
+          !entry.target.classList.contains("animated")
+        ) {
+          entry.target.classList.add("animated");
+          skillsCategoriesObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -100px 0px",
+    }
+  );
+
   skillsCategories.forEach((category) => {
-    const items = category.querySelectorAll(".skills__item");
-    items.forEach((item, index) => {
-      item.style.opacity = "0";
-      item.style.transform = "scale(0.8)";
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => {
-                item.style.transition =
-                  "opacity 0.5s ease, transform 0.5s ease";
-                item.style.opacity = "1";
-                item.style.transform = "scale(1)";
-              }, index * 62.5);
-              observer.unobserve(item);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      observer.observe(item);
-    });
+    skillsCategoriesObserver.observe(category);
   });
 }
