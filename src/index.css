@@ -794,7 +794,7 @@ section.animated {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
   margin-bottom: 2rem;
@@ -803,6 +803,7 @@ section.animated {
 .education__card {
   position: relative;
   border-left: 4px solid var(--professional-blue);
+  border-radius: 3rem;
 }
 
 .education__card::before {
@@ -817,15 +818,8 @@ section.animated {
   box-shadow: 0 0 0 4px rgba(188, 168, 168, 0.2);
 }
 
+/* FIX HOVER EFFECT NOT WORKING (UPSCALE OF ENTIRE CARD BY BY 10%) */
 .education__card:hover {
-  transform: translateX(8px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  border-left-color: var(--primary-text);
-}
-
-.education__card:hover::before {
-  background-color: var(--primary-text);
-  box-shadow: 0 0 0 4px rgba(26, 26, 26, 0.2);
 }
 
 /* Arrow styling */
@@ -880,15 +874,19 @@ section.animated {
   font-weight: 700;
   color: var(--primary-text);
   margin-bottom: 0.5rem;
+  text-decoration: underline;
 }
 
 .education__institution {
   font-size: 1.125rem;
   color: var(--professional-blue);
   font-weight: 600;
+  font-style: italic;
 }
 
 .education__year {
+  font-style: italic;
+  text-decoration: underline;
   font-size: 1rem;
   color: var(--primary-text);
   font-weight: 600;
@@ -909,27 +907,21 @@ section.animated {
 }
 
 .education__list {
-  list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-wrap: wrap;
+  list-style: inside;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
 }
 
 .education__list-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   border-radius: 6px;
   font-size: 0.95rem;
   color: var(--primary-text);
-  transition: all 0.3s ease;
+  transition: all 0.9s ease;
 }
 
 .education__list-item:hover {
-  background-color: var(--professional-blue);
-  color: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .education__thesis-text {
