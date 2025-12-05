@@ -23,4 +23,10 @@ All notable changes to the Tarvo Lilja Portfolio Website will be documented in t
   - Finalize Education-section layout (Vertical top-to-bottom, alignment: Year ascending)
 
 - 02.12.2025
+
   - Finalize Info on Education-section (Content)
+
+- 05.12.2025
+
+  - Tentatively finish Education-section. Moving on to 'Skills' next!
+  - Start work on Skills-section: Layout changes.
