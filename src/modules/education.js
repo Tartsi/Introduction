@@ -82,10 +82,12 @@ export function initEducation() {
     // First arrow (after elementary) -> Always scrolls to High School card (second card)
     arrows[0].style.cursor = "pointer";
     arrows[0].addEventListener("click", () => {
-      // Start scroll immediately
-      smoothScrollTo(highschoolCard, 1500);
+      // Start scroll immediately using requestAnimationFrame for instant response
+      requestAnimationFrame(() => {
+        smoothScrollTo(highschoolCard, 2000);
+      });
 
-      // Trigger animation slightly before scroll finishes (after 70% of scroll duration)
+      // Trigger animation after 80% of scroll duration for smooth entry
       setTimeout(() => {
         const timelineItem = highschoolCard.closest(
           ".education__timeline-item"
@@ -93,35 +95,35 @@ export function initEducation() {
         if (timelineItem && !timelineItem.classList.contains("animated")) {
           timelineItem.classList.add("animated");
         }
-      }, 1050); // 70% of 1500ms scroll duration
+      }, 1600); // 80% of 2000ms scroll duration
     });
 
     // Second arrow (after high school) -> Always scrolls to Bachelor card (third card)
     arrows[1].style.cursor = "pointer";
     arrows[1].addEventListener("click", () => {
-      // Start scroll immediately
-      smoothScrollTo(bachelorCard, 1500);
+      // Start scroll immediately using requestAnimationFrame for instant response
+      requestAnimationFrame(() => {
+        smoothScrollTo(bachelorCard, 2000);
+      });
 
-      // Trigger animation slightly before scroll finishes (after 70% of scroll duration)
+      // Trigger animation after 80% of scroll duration for smooth entry
       setTimeout(() => {
         const timelineItem = bachelorCard.closest(".education__timeline-item");
         if (timelineItem && !timelineItem.classList.contains("animated")) {
           timelineItem.classList.add("animated");
         }
-      }, 1050); // 70% of 1500ms scroll duration
+      }, 1600); // 80% of 2000ms scroll duration
     });
   }
 
-  // Setup "Skills" navigation trigger (same as Hero "See More")
+  // Setup "Skills" navigation trigger (slow scroll like Hero -> Education)
   const skillsTrigger = document.getElementById("skills-trigger");
   if (skillsTrigger) {
     skillsTrigger.addEventListener("click", () => {
       const skillsSection = document.getElementById("skills");
       if (skillsSection) {
-        skillsSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        // Use slow smooth scroll to mimic Hero -> Education transition
+        smoothScrollTo(skillsSection, 2000, true);
       }
     });
   }
@@ -131,16 +133,26 @@ export function initEducation() {
  * Custom smooth scroll function with configurable duration
  * @param {HTMLElement} element - Target element to scroll to
  * @param {number} duration - Scroll duration in milliseconds
+ * @param {boolean} toTop - If true, scroll to element top instead of center
  */
-function smoothScrollTo(element, duration) {
+function smoothScrollTo(element, duration, toTop = false) {
   const targetPosition =
     element.getBoundingClientRect().top + window.pageYOffset;
   const startPosition = window.pageYOffset;
-  const distance =
-    targetPosition -
-    startPosition -
-    window.innerHeight / 2 +
-    element.offsetHeight / 2;
+
+  let distance;
+  if (toTop) {
+    // Scroll to element top with some offset
+    distance = targetPosition - startPosition - 80;
+  } else {
+    // Scroll to center the element
+    distance =
+      targetPosition -
+      startPosition -
+      window.innerHeight / 2 +
+      element.offsetHeight / 2;
+  }
+
   let startTime = null;
 
   function animation(currentTime) {
@@ -148,7 +160,7 @@ function smoothScrollTo(element, duration) {
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
 
-    // Easing function for smooth animation
+    // Smoother easing function (ease-in-out cubic)
     const ease =
       progress < 0.5
         ? 4 * progress * progress * progress
