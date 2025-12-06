@@ -427,11 +427,8 @@ a {
 }
 
 .hero__basic-info-icon {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  width: 28px;
-  height: 28px;
+  width: 3rem;
+  height: 3rem;
   opacity: 0.7;
   transition: opacity 0.3s ease;
 }
@@ -453,6 +450,7 @@ a {
 }
 
 .hero__info-label {
+  text-decoration: underline;
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--professional-blue);
@@ -807,10 +805,10 @@ a {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 3.5rem;
   height: 4px;
-  background-color: var(--professional-blue);
-  border-radius: 2px;
+  background-color: var(--hero-text);
+  border-radius: 25rem;
 }
 
 .section-separator {
@@ -845,7 +843,7 @@ section.animated {
 
 .education__card {
   position: relative;
-  border-left: 4px solid var(--professional-blue);
+  /* border-left: 4px solid var(--professional-blue); */
   border-radius: 3rem;
   transition: transform 0.6s ease, box-shadow 0.6s ease;
 }
@@ -855,17 +853,23 @@ section.animated {
   position: absolute;
   left: -10px;
   top: 2rem;
-  width: 16px;
-  height: 16px;
+  width: 1.5rem;
+  height: 1.5rem;
   background-color: var(--professional-blue);
   border-radius: 50%;
   box-shadow: 0 0 0 4px rgba(188, 168, 168, 0.2);
 }
 
-/* Slow 10% upscale on hover */
-.education__card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+.education__card::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--professional-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(188, 168, 168, 0.2);
 }
 
 /* Arrow styling */
@@ -961,6 +965,7 @@ section.animated {
 }
 
 .education__subtitle {
+  text-decoration: underline;
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--primary-text);
